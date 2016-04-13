@@ -27,6 +27,8 @@ Is exporting all your content to markdown files. The files are places in folders
 
 Thats all, but feel free to upgrade this tool.
 
+---
+
 >Something can never be realized without great enthusiasm.
 
 
