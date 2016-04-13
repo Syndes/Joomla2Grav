@@ -25,7 +25,8 @@ Is exporting all your content to markdown files. The files are places in folders
 
 ## enthusiasm
 
-Thats all, but feel free to upgrade this tool.
+Thats all, 
+but feel free to upgrade this tool.
 
 ---
 
