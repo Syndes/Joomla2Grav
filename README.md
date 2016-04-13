@@ -6,7 +6,7 @@
 - login with administrator level in the front-end
 - open the url www.domain.com/jm2grav/markdown.php
 
-## what is migrated
+## what
 
 - publised
 - title
@@ -19,7 +19,7 @@
 - full text
 - full text image
 
-## what does it do
+## how
 
 Is exporting all your content to markdown files. The files are places in folders with the name of your category.
 
