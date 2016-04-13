@@ -1,7 +1,7 @@
 <?php
 require_once 'db_config.php'; 
 require_once 'functions.php'; 
-$is_admin = (authGetUserLevel($user) >= 0);
+$is_admin = (authGetUserLevel($user) >= 2);
 
 ?>
 
@@ -17,7 +17,7 @@ $is_admin = (authGetUserLevel($user) >= 0);
 <?php if(!$is_admin) { ?>
 	<div>
 		<p class='login_reg'>
-		Login en open deze pagina opnieuw
+		Please login as admin
 		<a class='login' href='../index.php?option=com_users&amp;view=login' TARGET='_parent' id='btnLogin'>Login</a>
 		</p>
 	</div>
@@ -25,7 +25,7 @@ $is_admin = (authGetUserLevel($user) >= 0);
 
 
 
-if($is_admin) {  // virtuemart_products_nl_nl
+if($is_admin) {
 	
 	$table = $dbprefix . 'content';
 	$query = "SELECT * FROM $table ";
