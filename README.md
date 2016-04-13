@@ -3,7 +3,7 @@
 ## installation
 
 - upload folder "jm2grav" in your Joomla root folder
-- login as admin in the front-end
+- login with administrator level in the front-end
 - open the url www.domain.com/jm2grav/markdown.php
 
 ## what is migrated
