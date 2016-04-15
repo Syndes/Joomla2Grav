@@ -1,7 +1,7 @@
 <?php
 require_once 'db_config.php'; 
 require_once 'functions.php'; 
-$is_admin = (authGetUserLevel($user) >= 2);
+$is_admin = (authGetUserLevel($user) >= 0);
 
 ?>
 
@@ -17,7 +17,7 @@ $is_admin = (authGetUserLevel($user) >= 2);
 <?php if(!$is_admin) { ?>
 	<div>
 		<p class='login_reg'>
-		Please login as admin
+		Login en open deze pagina opnieuw
 		<a class='login' href='../index.php?option=com_users&amp;view=login' TARGET='_parent' id='btnLogin'>Login</a>
 		</p>
 	</div>
@@ -25,7 +25,7 @@ $is_admin = (authGetUserLevel($user) >= 2);
 
 
 
-if($is_admin) {
+if($is_admin) {  // virtuemart_products_nl_nl
 	
 	$table = $dbprefix . 'content';
 	$query = "SELECT * FROM $table ";
@@ -60,6 +60,7 @@ if($is_admin) {
 
 			$language = substr($nr['language'], 0, strpos($nr['language'], '-'));
 			if ($language == '*') {$fileLanguage = '';}
+			elseif ($language == '') {$fileLanguage = '';}
 			else {$fileLanguage = '.' . $language;}
 			
 			$introtext = removeTags( $nr['introtext'] );
@@ -112,7 +113,11 @@ $image_fulltext_caption
 	
 EOD;
 			
-			echo $textMD . '<hr>';
+			//echo $textMD . '<hr>';
+			
+			echo $title . '<br>';
+			echo $alias . '<hr>';
+
 
 			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage);
 		
