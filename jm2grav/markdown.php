@@ -10,6 +10,13 @@ $is_admin = (authGetUserLevel($user) >= 0);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Joomla Content 2 GetGrav</title>
+
+<style>
+.btn{background:#3498db;background-image:-webkit-linear-gradient(top, #3498db, #2980b9);background-image:-moz-linear-gradient(top, #3498db, #2980b9);background-image:-ms-linear-gradient(top, #3498db, #2980b9);background-image:-o-linear-gradient(top, #3498db, #2980b9);background-image:linear-gradient(to bottom, #3498db, #2980b9);-webkit-border-radius:28;-moz-border-radius:28;border-radius:28px;font-family:Arial;color:#ffffff;font-size:32px;padding:10px 20px 10px 20px;text-decoration:none}
+h2 {color: #3498db;text-transform: uppercase;}
+
+</style>
+
 </head>
 <body>
 
@@ -34,7 +41,10 @@ if($is_admin) {  // virtuemart_products_nl_nl
 
 
 	if ($result > 0) {
-	
+
+    	echo '<h2>Build markdown files</h2>';
+        echo "<h3 style='margin-bottom:0px;'>Added Files, Count(" . count($oFiles) . ")</h3><div style='overflow:auto; width:800px; height:120px; border:1px solid #000;'>";
+
 		while($nr = mysql_fetch_array($result)){
 
 			$tableCat = $dbprefix . 'categories';
@@ -114,20 +124,28 @@ $image_fulltext_caption
 EOD;
 			
 			//echo $textMD . '<hr>';
-			
-			echo $title . '<br>';
-			echo $alias . '<hr>';
-
+			echo $title . ', ';
 
 			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage);
 		
 		}
+        echo "</div>";
 
 		$result = mysql_query($query) or die(mysql_error());
+
+		// Backup folder
+		include 'backup.php';
+
+		echo '<h2>You may download the markdown zip file.</h2>';
+
+		echo '<a class="btn" href="' . $sFileZip . '">Download file</a>'; //$eFile		
+		
 	
 	} else {
 	    echo "0 resultaten";
 		$report = "-- 0 resultaten --";
+		echo '<h2>Sorry now content. Something went wrong maybe.</h2>';
+
 	}
 	
 
