@@ -23,7 +23,7 @@
 
 Is exporting all your content to markdown files. The files are places in folders with the name of your category.
 
-Then its making a zip file you can download easy by clicking the download button.
+Then its making a zip file you can download easy by clicking the button.
 
 ## enthusiasm
 
