@@ -51,7 +51,7 @@ if($is_admin) {
 
 			if (!$nr['state']) {$published = 'false';} else {$published = 'true';}
 			$title = $nr['title'];
-			$fileName = 'default'; 
+			$fileName = $nr['title']; 
 			$created = $nr['created'];
 			$metadesc = $nr['metadesc'];
 			$metakey = $nr['metakey'];
