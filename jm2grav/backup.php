@@ -16,7 +16,6 @@
 
 
 
-
 // ############################################################################################################################
 //                                  NO CHANGES NEEDED FROM THIS POINT
 // ############################################################################################################################
@@ -33,21 +32,12 @@
     // SIMPLE HEADER ;)
     echo '<h2>Backup and download</h2>';
 
-    // CHECK IF BACKUP ALREADY DONE
-    if (file_exists($sFileZip)) {
-        // IF BACKUP EXISTS... SHOW MESSAGE AND THATS IT
-        echo "<h3 style='margin-bottom:0px;'>Backup Already Exists</h3><div style='width:800px; border:1px solid #000;'>";
-            echo '<b>File Name: </b>',$sFileZip,'<br />';
-            echo '<b>File Size: </b>',$sFileZip,'<br />';
-        echo "</div>";
-    } else {
 
-        // NO BACKUP FOR TODAY.. SO START IT AND SHOW SCRIPT SETTINGS
-        echo "<h3 style='margin-bottom:0px;'>Script Settings</h3><div style='width:800px; border:1px solid #000;'>";
-            echo '<b>Backup Directory: </b>',$pathBase,'<br /> ';
-            echo '<b>Backup Save File: </b>',$sFileZip,'<br />';
-        echo "</div>";
-
+		// Delete old zip
+		if (file_exists($sFileZip)) {
+			unlink($sFileZip);		
+		}
+				
         // CREATE ZIPPER AND LOOP DIRECTORY FOR SUB STUFF
         $oZip = new ZipArchive;
         $oZip->open($sFileZip,  ZipArchive::CREATE | ZipArchive::OVERWRITE);
@@ -86,14 +76,6 @@
             echo "<b>Zip Size: </b>",human_filesize($sFileZip),"<br />";
         echo "</div>";
 
-
-        // SHOW ANY PREVIOUS BACKUP FILES
-        echo "<h3 style='margin-bottom:0px;'>Previous Backups Count(" . count($oFiles_Previous) . ")</h3><div style='overflow:auto; width:800px; height:120px; border:1px solid #000;'>";
-        foreach ($oFiles_Previous as $eFile) {
-            echo basename($eFile) . ", Size: " . human_filesize($eFile) . "<br />";
-        }
-        echo "</div>";
-
         // SHOW ANY FILES THAT DID NOT EXIST??
         if (count($oFiles_Error)>0) {
             echo "<h3 style='margin-bottom:0px;'>Error Files, Count(" . count($oFiles_Error) . ")</h3><div style='overflow:auto; width:800px; height:120px; border:1px solid #000;'>";
@@ -103,13 +85,6 @@
             echo "</div>";
         }
 
-        // SHOW ANY FILES THAT HAVE BEEN ADDED TO THE ZIP
-        echo "<h3 style='margin-bottom:0px;'>Added Files, Count(" . count($oFiles) . ")</h3><div style='overflow:auto; width:800px; height:120px; border:1px solid #000;'>";
-        foreach ($oFiles as $eFile) {
-            echo $eFile . "<br />";
-        }
-        echo "</div>";
-    }
 
     // CONVERT FILENAME INTO A FILESIZE AS Bytes/Kilobytes/Megabytes,Giga,Tera,Peta
     function human_filesize($sFile, $decimals = 2) {
