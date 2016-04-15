@@ -123,11 +123,12 @@ function safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage) {
 	
 	$catName = str_file($catName);
 	$fileName = str_file($fileName);
+	$file = 'default';
 	$fileLanguage = $fileLanguage;
 				
 	$folderMD = './markdown/' . $catName;
 	$fileFolderMD = './markdown/' . $catName . '/'. $fileName;
-	$fileNameMD = $folderMD . '/' . $fileName . '/' . $fileName . $fileLanguage . ".md";	
+	$fileNameMD = $folderMD . '/' . $fileName . '/' . $file . $fileLanguage . ".md";	
 
 	$imagePath = pathinfo( $imageMD );
 	$imageName = $imagePath['filename'] . '.' . $imagePath['extension'];
