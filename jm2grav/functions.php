@@ -118,17 +118,26 @@ function getTag ($metakey) {
 }
 
 
+function rrmdir($dir) { 
+  foreach(glob($dir . '/*') as $file) { 
+    if(is_dir($file)) 
+      rrmdir($file); 
+    else 
+      unlink($file); 
+  } rmdir($dir); 
+}
 
-function safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage) {
+
+function safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType) {
 	
 	$catName = str_file($catName);
 	$fileName = str_file($fileName);
-	$file = 'default';
+	$fileType = $fileType;
 	$fileLanguage = $fileLanguage;
 				
 	$folderMD = './markdown/' . $catName;
 	$fileFolderMD = './markdown/' . $catName . '/'. $fileName;
-	$fileNameMD = $folderMD . '/' . $fileName . '/' . $file . $fileLanguage . ".md";	
+	$fileNameMD = $folderMD . '/' . $fileName . '/' . $fileType . $fileLanguage . ".md";	
 
 	$imagePath = pathinfo( $imageMD );
 	$imageName = $imagePath['filename'] . '.' . $imagePath['extension'];
