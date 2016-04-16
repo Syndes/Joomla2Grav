@@ -45,8 +45,23 @@ if($is_admin) {  // virtuemart_products_nl_nl
     	echo '<h2>Build markdown files</h2>';
         echo "<h3 style='margin-bottom:0px;'>Added Files, Count(" . count($oFiles) . ")</h3><div style='overflow:auto; width:800px; height:120px; border:1px solid #000;'>";
 
+		rrmdir('./markdown');
+
+		if ($_GET["type"]) {
+			$fileType = $_GET["type"];
+		} else {
+			$fileType = 'default';
+		}
+
 		while($nr = mysql_fetch_array($result)){
 
+
+			//domain.com/markdown.php?type=blog
+			//domain.com/markdown.php?type=default
+			//domain.com/markdown.php?type=internal
+			
+
+			
 			$tableCat = $dbprefix . 'categories';
 			$catID = $nr['catid'];
 			$queryCat = "SELECT * FROM $tableCat  WHERE `id` = $catID ";
@@ -126,7 +141,7 @@ EOD;
 			//echo $textMD . '<hr>';
 			echo $title . ', ';
 
-			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage);
+			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType);
 		
 		}
         echo "</div>";
