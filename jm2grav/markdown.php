@@ -104,6 +104,7 @@ if($is_admin) {  // virtuemart_products_nl_nl
 			$imageMD = $image[4];
 
 $textMD = <<<"EOD"
+---
 published: $published
 title: $title
 date: $created
@@ -122,7 +123,7 @@ taxonomy:
      category:
          - $catName
 slug: $alias
----        
+---
         
 #$title
 $introtext $fulltext
