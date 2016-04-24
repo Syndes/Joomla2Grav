@@ -1,4 +1,24 @@
 <?php 
+
+/*
+
+
+
+
+
+
+Do not modify the data below.
+
+
+
+
+
+
+
+
+
+
+*/
 define( '_JEXEC', 1 );
 define( 'JPATH_BASE', realpath(dirname(__FILE__).'/..' )); /* now MRBS is in a subfolder from Joomla. Check the manual on http://php.net/manual/en/function.realpath.php */
 define( 'DS', DIRECTORY_SEPARATOR );
