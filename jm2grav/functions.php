@@ -164,5 +164,36 @@ function safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType)
 
 
 
+function safeCatMD($catName,$catFileName,$catTextMD,$catImage_intro,$fileLanguage,$fileType) {
+	
+	$catName = str_file($catName);
+	$fileType = $fileType;
+	$fileLanguage = $fileLanguage;
+				
+	$catFolderMD = './markdown/' . $catName;
+	$catFileFolderMD = './markdown/' . $catName . '/'. $catFileName;
+	$catFileNameMD = $catFolderMD . '/' .  $fileType . $fileLanguage . ".md";	
+
+	$catImagePath = pathinfo( $catImage_intro );
+	$catImageName = $catImagePath['filename'] . '.' . $catImagePath['extension'];
+	
+	$catImageSource = str_replace("image: ", '../', $catImage_intro);
+	$catImageTarget = $catFileName = $catFolderMD . '/' . $catImageName;
+	
+	//copy image
+	copy($catImageSource,$catImageTarget);
+
+	//make file
+	$catTextMD = $catTextMD;
+	$catSaved_File = fopen($catFileNameMD, 'w');
+	fwrite($catSaved_File, $catTextMD);
+	fclose($catSaved_File);
+
+    return;
+
+}
+
+
+
 
 ?>
