@@ -128,10 +128,10 @@ function rrmdir($dir) {
 }
 
 
-function safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType) {
+function safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType,$nrFileName) {
 	
 	$catName = str_file($catName);
-	$fileName = str_file($fileName);
+	$fileName = $nrFileName . '.' . str_file($fileName);
 	$fileType = $fileType;
 	$fileLanguage = $fileLanguage;
 				
