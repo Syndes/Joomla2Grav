@@ -25,7 +25,7 @@ footer{margin-top: 20px;margin-bottom: 20px;float: right;}
 <?php if(!$is_admin) { ?>
 	<div>
 		<p class='login_reg'>
-		Login en open deze pagina opnieuw
+		Login as super user in the frond-end. Then try again.
 		<a class='btn' href='../index.php?option=com_users&amp;view=login' TARGET='_parent' id='btnLogin'>Login</a>
 		</p>
 	</div>
