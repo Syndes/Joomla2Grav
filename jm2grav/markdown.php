@@ -1,7 +1,7 @@
 <?php
 require_once 'db_config.php'; 
 require_once 'functions.php'; 
-$is_admin = (authGetUserLevel($user) >= 0);
+$is_admin = (authGetUserLevel($user) >= 2);
 
 ?>
 
