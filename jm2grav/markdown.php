@@ -136,8 +136,8 @@ $textMD = <<<"EOD"
 ---
 published: $published
 title: $title
-date: $created
-publish_date: $created
+date: '$created'
+publish_date: '$created'
 metadata:
      description: '$metadesc'
      keywords: '$metakey'
@@ -173,8 +173,8 @@ $catTextMD = <<<"EOD"
 ---
 published: $published
 title: $catName
-date: $created
-publish_date: $created
+date: '$created'
+publish_date: '$created'
 metadata:
      description: '$catMetadesc'
      keywords: '$catMetakey'
