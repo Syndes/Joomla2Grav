@@ -1,7 +1,7 @@
 <?php
 require_once 'db_config.php'; 
 require_once 'functions.php'; 
-$is_admin = (authGetUserLevel($user) >= 2);
+$is_admin = (authGetUserLevel($user) >= 0);
 
 ?>
 
@@ -36,7 +36,7 @@ footer{margin-top: 20px;margin-bottom: 20px;float: right;}
 if($is_admin) {  // virtuemart_products_nl_nl
 	
 	$table = $dbprefix . 'content';
-	$query = "SELECT * FROM $table ";
+	$query = "SELECT * FROM $table ORDER BY $table.`publish_up` DESC";
 	
 	$result = mysql_query($query) or die(mysql_error());
 
@@ -68,7 +68,7 @@ if($is_admin) {  // virtuemart_products_nl_nl
 
 		rrmdir('./markdown');
 
-
+		$nrFileName = 1;
 		while($nr = mysql_fetch_array($result)){
 
 
@@ -199,11 +199,14 @@ EOD;
 			//echo $textMD . '<hr>';
 			echo $title . ', ';
 
-			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType);
+			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType,$nrFileName);
 
 			safeCatMD($catName,$catFileName,$catTextMD,$catImage_intro,$fileLanguage,$fileType);
+
+			$nrFileName++;
 		
 		}
+		
         echo "</div>";
 
 		$result = mysql_query($query) or die(mysql_error());
