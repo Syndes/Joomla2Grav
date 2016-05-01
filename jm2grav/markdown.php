@@ -36,7 +36,7 @@ footer{margin-top: 20px;margin-bottom: 20px;float: right;}
 if($is_admin) {  // virtuemart_products_nl_nl
 	
 	$table = $dbprefix . 'content';
-	$query = "SELECT * FROM $table ORDER BY $table.`catid` ASC, $table.`publish_up` DESC";
+	$query = "SELECT * FROM $table ORDER BY $table.`catid` ASC, $table.`publish_up` ASC";
 	
 	$result = mysql_query($query) or die(mysql_error());
 
