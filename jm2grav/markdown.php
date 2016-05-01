@@ -36,7 +36,7 @@ footer{margin-top: 20px;margin-bottom: 20px;float: right;}
 if($is_admin) {  // virtuemart_products_nl_nl
 	
 	$table = $dbprefix . 'content';
-	$query = "SELECT * FROM $table ORDER BY $table.`publish_up` DESC";
+	$query = "SELECT * FROM $table ORDER BY $table.`catid` ASC, $table.`publish_up` DESC";
 	
 	$result = mysql_query($query) or die(mysql_error());
 
@@ -71,12 +71,9 @@ if($is_admin) {  // virtuemart_products_nl_nl
 		$nrFileName = 1;
 		while($nr = mysql_fetch_array($result)){
 
-
 			//domain.com/markdown.php?type=blog
 			//domain.com/markdown.php?type=default
 			//domain.com/markdown.php?type=internal
-			
-
 			
 			$tableCat = $dbprefix . 'categories';
 			$catID = $nr['catid'];
@@ -88,6 +85,7 @@ if($is_admin) {  // virtuemart_products_nl_nl
 					$catName = $nrCat['title'];
 					$catFileName = $nrCat['title']; 
 					$catDesc = removeTags( $nrCat['description'] );
+
 					$catMetadesc = $nrCat['metadesc'];
 					$catMetakey = $nrCat['metakey'];
 					$catAlias = $nrCat['path'];
@@ -132,7 +130,7 @@ if($is_admin) {  // virtuemart_products_nl_nl
 			
 			$imageMD = $image[4];
 
-$textMD = <<<"EOD"
+$textMD = <<<EOT
 ---
 published: $published
 title: $title
@@ -152,24 +150,33 @@ taxonomy:
      category:
          - $catName
 slug: $alias
+
 ---
         
-#$title
+# $title
+
 $introtext $fulltext
 
 $image_intro
+
 $float_intro
+
 $image_intro_alt
+
 $image_intro_caption
+
 $image_fulltext
+
 $float_fulltext
+
 $image_fulltext_alt
+
 $image_fulltext_caption
 	
-EOD;
+EOT;
 			
 
-$catTextMD = <<<"EOD"
+$catTextMD = <<<EOT
 ---
 published: $published
 title: $catName
@@ -183,26 +190,29 @@ taxonomy:
          - $catName
          $tagMD
 slug: $catAlias
+
 ---
         
-#$catName
+# $catName
 
 $catDesc
 
 $catCategory_layout
+
 $catImage_intro
+
 $catImage_intro_alt
+
 $catImage_intro_caption
 	
-EOD;
+EOT;
 
-			//echo $textMD . '<hr>';
+			$catTextMD = removeSpecials( $catTextMD );
+			$textMD = removeSpecials( $textMD );
+			
 			echo $title . ', ';
-
 			safeFileMD($catName,$fileName,$textMD,$imageMD,$fileLanguage,$fileType,$nrFileName);
-
 			safeCatMD($catName,$catFileName,$catTextMD,$catImage_intro,$fileLanguage,$fileType);
-
 			$nrFileName++;
 		
 		}
@@ -213,9 +223,7 @@ EOD;
 
 		// Backup folder
 		include 'backup.php';
-
 		echo '<h2>You may download the markdown zip file.</h2>';
-
 		echo '<a class="btn" href="' . $sFileZip . '">Download file</a>'; //$eFile		
 		
 	
@@ -230,9 +238,7 @@ EOD;
 } ?>
 
 <footer class="footer">
-	
-<a class='btnUrl' href='https://github.com/Syndes/Joomla2Grav' target="_blank" id='url'>GitHub</a>
+	<a class='btnUrl' href='https://github.com/Syndes/Joomla2Grav' target="_blank" id='url'>GitHub</a>
 </footer>
-
 
 </body>
