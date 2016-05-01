@@ -137,8 +137,8 @@ title: $title
 date: '$created'
 publish_date: '$created'
 metadata:
-     description: '$metadesc'
-     keywords: '$metakey'
+     description: "$metadesc"
+     keywords: "$metakey"
 taxonomy:
      tag:
          - joomla
@@ -183,8 +183,8 @@ title: $catName
 date: '$created'
 publish_date: '$created'
 metadata:
-     description: '$catMetadesc'
-     keywords: '$catMetakey'
+     description: "$catMetadesc"
+     keywords: "$catMetakey"
 taxonomy:
      tag:
          - $catName
